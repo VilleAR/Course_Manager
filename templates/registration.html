@@ -1,0 +1,19 @@
+{%if session.username %}
+<p> Already logged in!</p>
+<a href="/">Back to the front page</a>
+{% else %}
+<form action="/register" method="POST">
+<h3> Registration</h3>
+<p>Enter username and password:</p>
+<p>Username:<br>
+<input type="text" name="username"></p>
+<p>Password:<br>
+<input type="password" name="password"></p>
+<input type="submit" value="Register">
+<br>
+<hr>
+<p> Choose role: </p>
+{% for choice in choices %}
+<input type="radio" name="choice" value="{{ choice }}"> {{ choice }} <br>
+{% endfor %}
+{% endif %}
