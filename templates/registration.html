@@ -1,19 +1,43 @@
-{%if session.username %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "layout.html" %}
+{% block title %}Front page{% endblock %}
+{% block content %}
+
+
+{%if session.role!=null %}
 <p> Already logged in!</p>
-<a href="/">Back to the front page</a>
+<a href="/">Get out of here</a>
 {% else %}
 <form action="/register" method="POST">
 <h3> Registration</h3>
 <p>Enter username and password:</p>
 <p>Username:<br>
-<input type="text" name="username"></p>
+<input type="text" name="username"required></p>
 <p>Password:<br>
-<input type="password" name="password"></p>
-<input type="submit" value="Register">
-<br>
-<hr>
+<input type="password" name="password"required></p>
 <p> Choose role: </p>
 {% for choice in choices %}
-<input type="radio" name="choice" value="{{ choice }}"> {{ choice }} <br>
+<input type="radio" name="role" value="{{ choice }}" required> {{ choice }} <br>
 {% endfor %}
+<input type="submit" value="Register">
+</form>
+<br>
+<p></p>
+<hr>
+<p></p>
 {% endif %}
+
+<p>Already registered? Log in:</p>
+<p></p>
+
+<form action="/login" method="POST">
+    <p>Username:<br>
+    <input type="text" name="username"></p>
+    <p>Password:<br>
+    <input type="password" name="password"></p>
+    <input type="submit" value="Log in">
+    <hr>
+
+{% endblock %}

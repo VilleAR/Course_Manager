@@ -1,0 +1,35 @@
+<!doctype html>
+<div style="background: blue;">
+<title>Course Manager {% block title %}{% endblock %}</title>
+<h1>Course Manager</h1>
+<p>Look at the ratings here:</p>
+<p><a href="/home" style="font: bold 11px Arial;
+text-decoration: none;
+background-color: #EEEEEE;
+color: #123456;
+padding: 4px 12px 4px 12px;
+border-top: 3px solid #CCCCCC;
+border-right: 3px solid #123456;
+border-bottom: 3px solid #123456;
+border-left: 3px solid #CCCCCC;">Ratings</a> </p>
+{% if session.username %}
+<p>Hello <i><b>{{ session.username }} </b> </i>, have a pleasant day.</p>
+<p>Click here if you want to go to the index page for some reason:</p>
+<p></p><a href="/" style="font: bold 11px Arial;
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: 4px 12px 4px 12px;
+    border-top: 3px solid #CCCCCC;
+    border-right: 3px solid #333333;
+    border-bottom: 3px solid #333333;
+    border-left: 3px solid #CCCCCC;">Index page</a>
+<a href="/logout" style="font: italic 16px Comic Sans;">Logout</a>
+{% else %}
+<h6><a href="/registration">Registration page! Please register</a></h6>
+<a href="/">Login page</a>
+{% endif %}
+<hr>
+{% block content %}{% endblock %}
+<hr>
+</div>

@@ -1,4 +1,28 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "layout.html" %}
+{% block title %}Front page{% endblock %}
+{% block content %}
+
 <title>Course Manager</title>
 <h1>Welcome to the course manager!</h1>
 {% if session.username %}
 <p>Logged in as {{ session.username }} ({{ session.role }}).</p>
+{% if session.role=="Teacher"%}
+<p>T</p>
+{% else %}
+<p>S</p>
+{% endif %}
+{% else %}
+<form action="/login" method="POST">
+<p>Username:<br>
+<input type="text" name="username"></p>
+<p>Password:<br>
+<input type="password" name="password"></p>
+<input type="submit" value="Log in">
+<hr>
+<p>Make a new user:</p>
+<a href="/registration">Register</a>
+</form>
+{%endif%}
+{%endblock%}
