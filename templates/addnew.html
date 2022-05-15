@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "layout.html" %}
+{% block title %}Front page{% endblock %}
+{% block content %}
+{% if session.role=="Teacher" %}
+
+<title>Add a course</title>
+
+<ul>
+    <form action="/create" method="POST">
+    <h2>Add a new course</h2>
+    <p>Name:</p>
+    <input type="text" name="coursename"required></p>
+    <p>Professor: </p>
+    <input type="text" name="professor"required></p>
+    <p>Prerequisite courses:</p>
+    {%for item in items%}
+    <fieldset>
+    
+      <input type="checkbox" id="{{item[0]}}" name="prereqs" value="{{item[0]}}">
+      <label for="{{item[0]}}">{{item[0]}}</label>
+        </fieldset>
+    
+    {%endfor%}      
+    <input type="submit" value="Add">
+    </form>
+    </ul>
+{%else%}
+<p><a href="/">No permissions here! Please leave.</a></p>
+{%endif%}
+{%endblock%}

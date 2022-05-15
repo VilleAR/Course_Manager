@@ -1,3 +1,4 @@
+<!DOCTYPE html> 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {% extends "layout.html" %}
@@ -8,10 +9,30 @@
 <h1>Welcome to the course manager!</h1>
 {% if session.username %}
 <p>Logged in as {{ session.username }} ({{ session.role }}).</p>
+
+<h3>Choose: </h3>
+<p></p>
+<a href="/courses" style="font: bold 11px Arial;
+text-decoration: none;
+background-color: black;
+color: aqua;
+padding: 10px 30px 10px 30px;
+border-top: 6px solid #CCCCCC;
+border-right: 6px solid #123456;
+border-bottom: 6px solid #123456;
+border-left: 6px solid #CCCCCC;">Course list</a>
+<a href="/professors" style="font: bold 11px Arial;
+text-decoration: none;
+background-color: black;
+color: aqua;
+padding: 10px 30px 10px 30px;
+border-top: 6px solid #CCCCCC;
+border-right: 6px solid #123456;
+border-bottom: 6px solid #123456;
+border-left: 6px solid #CCCCCC;">Professor list</a>
 {% if session.role=="Teacher"%}
-<p>T</p>
 {% else %}
-<p>S</p>
+
 {% endif %}
 {% else %}
 <form action="/login" method="POST">

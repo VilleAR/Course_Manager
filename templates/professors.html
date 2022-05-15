@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "layout.html" %}
+{% block title %}List of professors{% endblock %}
+{% block content %}
+<h4>Click on a name to see which courses they teach</h4>
+{%for item in professors%}
+<p><a href="/professors/{{ item[0] }}"style="padding:2px 6px 2px 6px;border-top: 2px solid #CCCCCC;
+    border-right: 2px solid #123456;
+    border-bottom: 2px solid #123456;
+    border-left: 2px solid #CCCCCC; background-color:aqua;">{{item[0]}}</a> </p>
+{%endfor%}
+
+{%endblock%}

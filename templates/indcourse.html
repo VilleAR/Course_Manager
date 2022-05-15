@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "layout.html" %}
+{% block title %}Front page{% endblock %}
+{% block content %}
+<h1> {{ course[0] }}</h1>
+<p><a href="/professors/{{ course[1] }}"style="padding:2px 6px 2px 6px;border-top: 2px solid #CCCCCC;
+    color:purple;
+    border-right: 2px solid #123456;
+    border-bottom: 2px solid #123456;
+    border-left: 2px solid #CCCCCC; background-color:green;">Professor: {{ course[1]}}</a></p>
+{%if count==0%}
+<p>This course has no prerequisites.</p>
+{%else%}
+<p>Prerequisite courses ({{count}} total):</p>
+{%for item in crs%}
+<p><a href="/courses/{{ item[0] }}"style="padding:2px 6px 2px 6px;border-top: 2px solid #CCCCCC;
+    border-right: 2px solid #123456;
+    border-bottom: 2px solid #123456;
+    border-left: 2px solid #CCCCCC; background-color:aqua;">{{item[0]}}</a> </p>
+{%endfor%}
+{%endif%}
+{%if session.role=="Teacher"%}
+<ul>
+    <form action="{{url_for('delete')}}" method="post" class="delc">
+    <input type=hidden value="{{ course[0] }}"name="name" />
+    <input type=submit value="DELETE COURSE"style="padding:2px 6px 2px 6px;border-top: 2px solid #CCCCCC;
+    border-right: 2px solid #123456;
+    border-bottom: 2px solid #123456;
+    border-left: 2px solid #CCCCCC; background-color:red;" />
+    
+    </form>
+
+</ul>
+{%endif%}
+<h5>The below section outlines a path to completing this course by listing the order that its prerequisites must be completed in:</h5>
+{%for item in arr%}
+<li></li>
+{%for a in item%}
+
+<p>{{a}}</p>
+
+{%endfor%}
+</li>
+<br>
+{%endfor%}
+
+{%endblock%}

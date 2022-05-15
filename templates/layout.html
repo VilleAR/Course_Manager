@@ -1,6 +1,16 @@
 <!doctype html>
 <div style="background: salmon;">
 <title>Course Manager {% block title %}{% endblock %}</title>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+
+      <li><h2>{{message}}</h2></li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+
 <h1 style="font: Times; background-color:slateblue; border-top: 4px solid #CCCCCC;
 border-right: 4px solid #123456;
 border-bottom: 4px solid #123456;
@@ -14,15 +24,44 @@ padding: 4px 12px 4px 12px;
 border-top: 3px solid #CCCCCC;
 border-right: 3px solid #123456;
 border-bottom: 3px solid #123456;
-border-left: 3px solid #CCCCCC;">Back to the front page</a> </p>
+border-left: 3px solid #CCCCCC;">Back to the front page          </a> 
+<a href="/courses" style="font: bold 11px Arial;
+  text-decoration: none;
+  background-color: slateblue;
+  color: #123456;
+  padding: 4px 12px 4px 12px;
+  border-top: 3px solid #CCCCCC;
+  border-right: 3px solid #123456;
+  border-bottom: 3px solid #123456;
+  border-left: 3px solid #CCCCCC;">To course list</a>
+  <a href="/professors" style="font: bold 11px Arial;
+  text-decoration: none;
+  background-color: slateblue;
+  color: #123456;
+  padding: 4px 12px 4px 12px;
+  border-top: 3px solid #CCCCCC;
+  border-right: 3px solid #123456;
+  border-bottom: 3px solid #123456;
+  border-left: 3px solid #CCCCCC;">To professor list</a> 
+  <a href="/mycourses" style="font: bold 11px Arial;
+  text-decoration: none;
+  background-color: slateblue;
+  color: #123456;
+  padding: 4px 12px 4px 12px;
+  border-top: 3px solid #CCCCCC;
+  border-right: 3px solid #123456;
+  border-bottom: 3px solid #123456;
+  border-left: 3px solid #CCCCCC;">My courses</a> </p>
 {% if session.username %}
 <p style="color:#4d4343;padding: 2px 6px 2px 6px;">"If I were not Diogenes, I would choose to be <i><b>{{ session.username }} </b> </i>." - Diogenes </p>
 <p></p>
-<a href="/logout" style="font: italic 16px Comic Sans;">Log out</a>
+<a href="/logout" style="font: italic 16px Comic Sans;padding: 2px 6px 2px 6px;">Log out</a>
 {% else %}
 <h6><a href="/registration" style=color:rgb(255, 0, 212); font:bold 11px Arial;">Click here to go to the registration page! You must register to continue</a></h6>
 {% endif %}
 <hr>
+<hr>
+{% endwith %}
 {% block content %}{% endblock %}
 <hr>
 </div>

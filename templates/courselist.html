@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "layout.html" %}
+{% block title %}My courses{% endblock %}
+{% block content %}
+{%if session.role=="Student"%}
+<h3>Your courses</h3>
+{%if made==0%}
+<p>You need to make a course plan first:</p>
+<a href="/createplan"button type="button">Create a plan!</button>
+{%else%}
+<h4>Courses you have signed up for:</h2>
+{%if count==0%}
+<p>You have not signed up for any courses yet!</p>
+{%else%}
+{%for item in crs%}
+<p><a href="/courses/{{ item }}"style="padding:2px 6px 2px 6px;border-top: 2px solid #CCCCCC;
+    border-right: 2px solid #123456;
+    border-bottom: 2px solid #123456;
+    border-left: 2px solid #CCCCCC; background-color:aqua;">{{item}}</a> </p>
+{%endfor%}
+{%endif%}
+<hr>
+
+<h4>Sign up for courses here:</h4>
+
+<form action="/addtoplan" method="POST">
+    <p>You can sign up for one course at a time. You can only sign up for a course if you've also signed up for its prerequisites.</p>
+    {%for item in items%}
+    
+    <fieldset>
+    
+      <input type="radio" id="{{item[0]}}" name="toadd" value="{{item[0]}}">
+      <label for="{{item[0]}}">{{item[0]}}</label>
+        </fieldset>
+        <div>
+        <button type="submit">Add</button>
+          </div>
+{%endfor%}
+</form>
+{%endif%}
+{%else%}
+<p>Nothing for you here</p>
+{%endif%}
+{%endblock%}
