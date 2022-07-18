@@ -102,6 +102,9 @@ def indcourse(name):
 
 @app.route("/mycourses")
 def mycourses():
+    if not session:
+        flash('Must be logged in to view that page!')
+        return redirect("/")
     if session["role"]=="Teacher":
         t=session["username"]
         sql=("SELECT name FROM courses WHERE professor=:t;")
