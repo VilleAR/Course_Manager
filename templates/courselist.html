@@ -30,12 +30,13 @@
     
     <fieldset>
     
-      <input type="radio" id="{{item[0]}}" name="toadd" value="{{item[0]}}">
+      <input type="radio" id="{{item[0]}}" name="toadd" value="{{item[0]}}" required>
       <label for="{{item[0]}}">{{item[0]}}</label>
         </fieldset>
         <div>
-        <button type="submit">Add</button>
+        
           </div>
+          <button type="submit">Add</button>
 {%endfor%}
 </form>
 {%endif%}

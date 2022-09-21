@@ -252,7 +252,7 @@ def professors():
     result=db.session.execute(sql)
     res=result.fetchall()
     return render_template("professors.html",professors=res)
-    
+
 @app.route("/professors/<string:profn>")
 def prof(profn):
     sql="SELECT name FROM courses WHERE professor=:profn;"
