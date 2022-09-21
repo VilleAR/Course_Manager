@@ -15,6 +15,7 @@ def test():
         return render_template("index.html")
     elif session["role"]=="Student":
         return render_template("badlogin.html")
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -128,6 +129,7 @@ def createplan():
     db.session.commit()
     flash('Course plan created')
     return redirect("/mycourses")
+
 @app.route("/addtoplan", methods=["POST"])
 def addtoplan():
     toadd=request.form["toadd"]
@@ -250,6 +252,7 @@ def professors():
     result=db.session.execute(sql)
     res=result.fetchall()
     return render_template("professors.html",professors=res)
+    
 @app.route("/professors/<string:profn>")
 def prof(profn):
     sql="SELECT name FROM courses WHERE professor=:profn;"
@@ -259,6 +262,7 @@ def prof(profn):
         return("Professor has no courses")
     else:
         return render_template("indprof.html", crs=result, profn=profn)
+
 @app.route("/registration")
 def registration():
     choices=["Student", "Teacher"]
