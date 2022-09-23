@@ -145,8 +145,17 @@ def addtoplan():
         sql="SELECT prerequisites FROM courses WHERE name=:toadd"
         re2=db.session.execute(sql,{"toadd":toadd})
         re2=re2.fetchone()
+        print("!!!!")
+        print(re2[0])
+
         for r in re2[0]:
-            if r in re:
+            sql="SELECT name FROM courses WHERE id=:r"
+            coursename=db.session.execute(sql,{"r":r})
+            coursename=coursename.fetchone()[0]
+
+            print(coursename)
+            print(re[0])
+            if coursename not in re[0]:
                 t=False 
         if t:
             sql="UPDATE courselists SET courses=array_append(courses, :toadd) WHERE username=:u;"
