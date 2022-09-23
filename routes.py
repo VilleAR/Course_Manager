@@ -145,7 +145,7 @@ def addtoplan():
         sql="SELECT prerequisites FROM courses WHERE name=:toadd"
         re2=db.session.execute(sql,{"toadd":toadd})
         re2=re2.fetchone()
-        for r in re2:
+        for r in re2[0]:
             if r in re:
                 t=False 
         if t:
